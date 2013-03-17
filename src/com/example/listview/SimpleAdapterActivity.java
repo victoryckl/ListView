@@ -9,8 +9,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SimpleAdapterActivity extends Activity {
@@ -25,6 +28,8 @@ public class SimpleAdapterActivity extends Activity {
 
 		List<Map<String, Object>> listdata = getData();
 		setListAdapter(listdata);
+		
+		setListEmptyView();
 		
 		findViewById(R.id.add_item).setOnClickListener(new OnClickListener() {
 			@Override
@@ -74,5 +79,19 @@ public class SimpleAdapterActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("text", text);
 		return map;
+	}
+	
+	//------------------------------
+	private void setListEmptyView() {
+		/*
+		TextView emptyView = new TextView(getBaseContext());
+		emptyView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		emptyView.setText("This appears when the list is empty");
+		emptyView.setVisibility(View.GONE);
+		((ViewGroup)mList.getParent()).addView(emptyView);
+		mList.setEmptyView(emptyView);
+		*/
+		View emptyView = findViewById(R.id.empty);
+		mList.setEmptyView(emptyView);
 	}
 }
